@@ -19,4 +19,10 @@ public class NormalBullet : MonoBehaviour {
 		Destroy (gameObject);
 	}
 
+	IEnumerator OnCollisionEnter2D(Collision2D enemy){
+		if (enemy.gameObject.CompareTag ("Wall") || enemy.gameObject.CompareTag ("Enemy")) {
+			yield return new WaitForSeconds (0.01f);
+			Destroy (gameObject);
+		}
+	}
 }
