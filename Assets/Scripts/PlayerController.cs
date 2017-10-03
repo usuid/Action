@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour {
 	private bool canjump = true;
 	private float xspeed;
 	private bool isForwardRight;
+	private bool isLadderStay;
 
 	// Use this for initialization
 	void Start () {
@@ -35,11 +36,21 @@ public class PlayerController : MonoBehaviour {
 				isForwardRight = false;
 			}
 
-			if (Input.GetKeyDown (KeyCode.UpArrow) && canjump) {
-				this.GetComponent<Rigidbody2D>().AddForce (Vector2.up * JumpSpeed);
-				canjump = false;
-			}
-			if (Input.GetKeyUp (KeyCode.UpArrow) && this.GetComponent<Rigidbody2D> ().velocity.y >= 0f) {
+			if (!isLadderStay) {
+				if (Input.GetKeyDown (KeyCode.UpArrow) && canjump) {
+					this.GetComponent<Rigidbody2D> ().AddForce (Vector2.up * JumpSpeed);
+					canjump = false;
+				}
+				if (Input.GetKeyUp (KeyCode.UpArrow) && this.GetComponent<Rigidbody2D> ().velocity.y >= 0f) {
+					this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (0f, 0f);
+				}
+			} else {
+				if (Input.GetKey (KeyCode.UpArrow)) {
+					this.transform.Translate (new Vector3 (0f, 0.1f, 0f));
+				}
+				if (Input.GetKey (KeyCode.DownArrow)) {
+					this.transform.Translate (new Vector3 (0f, -0.1f, 0f));
+				}
 				this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (0f, 0f);
 			}
 			if (Input.GetKeyDown (KeyCode.Z)) {
@@ -51,20 +62,20 @@ public class PlayerController : MonoBehaviour {
 	void OnCollisionEnter2D (Collision2D Other) {
 		if (Other.gameObject.CompareTag ("Ground")) {
 			canjump = true; 
+			isLadderStay = false;
 		}
 		if (Other.gameObject.CompareTag ("Enemy")) {
 			PlayerHP -= 1f;
+			PlayerHPtext.text = PlayerHP.ToString() + "/"+ MaxHP.ToString();
 			PlayerHPBar.value = PlayerHP / MaxHP;
 		}
 	}
 
-	void OnbCollisionStay2D (Collision2D coll){
-		if (coll.gameObject.CompareTag ("Enemy")) {
-			PlayerHP -= 1f;
-			PlayerHPtext.text = "";
-			PlayerHPBar.value = PlayerHP / MaxHP;
+	void OnTriggerStay2D (Collider2D coll){
+		if (coll.gameObject.CompareTag ("Ladder")) {
+			isLadderStay = true;
+			canjump = true;
 		}
-
 	}
 
 	void FireNormalBullet () {

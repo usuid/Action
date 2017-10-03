@@ -15,12 +15,12 @@ public class NormalBullet : MonoBehaviour {
 	}
 
 	IEnumerator DestroyBullet (){
-		yield return new WaitForSeconds (1f);
+		yield return new WaitForSeconds (0.9f);
 		Destroy (gameObject);
 	}
 
-	IEnumerator OnCollisionEnter2D(Collision2D enemy){
-		if (enemy.gameObject.CompareTag ("Wall") || enemy.gameObject.CompareTag ("Enemy")) {
+	IEnumerator OnTriggerEnter2D(Collider2D other){
+		if (other.gameObject.CompareTag ("Ground") || other.gameObject.CompareTag ("Wall") || other.gameObject.CompareTag ("Enemy")) {
 			yield return new WaitForSeconds (0.01f);
 			Destroy (gameObject);
 		}
