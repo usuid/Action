@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour {
 	public Text PlayerHPtext;
 	public float Speed = 1.0f;
 	public bool CanMove = true;
-	public float JumpSpeed = 10f;
+	public float JumpSpeed = 5f;
 	public int BulletID;
 	public GameObject[] Bullet;
 	//private
@@ -30,12 +30,13 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(CanMove){
-			xspeed = Input.GetAxis ("Horizontal") * Speed;
-			this.transform.Translate (xspeed, 0f, 0f);
 			if (Input.GetKey (KeyCode.RightArrow)) {
-				isForwardRight = true;
-			} else if (Input.GetKey (KeyCode.LeftArrow)) {
-				isForwardRight = false;
+				this.transform.rotation = new Quaternion (0f, 0f, 0f, 0f);
+				this.transform.Translate (0.15f, 0f, 0f);
+			}
+			if (Input.GetKey (KeyCode.LeftArrow)) {
+				this.transform.rotation = new Quaternion (0f, 180f, 0f, 0f);
+				this.transform.Translate (0.15f, 0f, 0f);
 			}
 
 			if (Input.GetKeyDown (KeyCode.Z) && canjump) {
@@ -95,10 +96,6 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void FireBullet () {
-		if (isForwardRight) {
-			Instantiate (Bullet [BulletID], transform.position, transform.rotation);
-		} else {
-			Instantiate (Bullet [BulletID], transform.position, new Quaternion (0f, 180f, 0f, 0f));
-		}
+		Instantiate (Bullet [BulletID], transform.position, transform.rotation);
 	}
 }
