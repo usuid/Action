@@ -10441,7 +10441,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4152064979122834, guid: 4255fdc833f3f714fa789d2ef1959847, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.31
       objectReference: {fileID: 0}
     - target: {fileID: 4152064979122834, guid: 4255fdc833f3f714fa789d2ef1959847, type: 2}
       propertyPath: m_LocalPosition.z
@@ -10466,6 +10466,16 @@ Prefab:
     - target: {fileID: 4152064979122834, guid: 4255fdc833f3f714fa789d2ef1959847, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 212496074245595976, guid: 4255fdc833f3f714fa789d2ef1959847,
+        type: 2}
+      propertyPath: m_DrawMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 61580320644182212, guid: 4255fdc833f3f714fa789d2ef1959847,
+        type: 2}
+      propertyPath: m_SpriteTilingProperty.drawMode
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4255fdc833f3f714fa789d2ef1959847, type: 2}
@@ -43412,6 +43422,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114588120625557020, guid: cbdb8de024d274c5daba47b1ca19b7cb,
+        type: 2}
+      propertyPath: Bullet.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4058772909157458, guid: cbdb8de024d274c5daba47b1ca19b7cb, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -43472,6 +43487,33 @@ Prefab:
     - target: {fileID: 50542169070390376, guid: cbdb8de024d274c5daba47b1ca19b7cb,
         type: 2}
       propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114588120625557020, guid: cbdb8de024d274c5daba47b1ca19b7cb,
+        type: 2}
+      propertyPath: MaxHP
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114588120625557020, guid: cbdb8de024d274c5daba47b1ca19b7cb,
+        type: 2}
+      propertyPath: PlayerHP
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114588120625557020, guid: cbdb8de024d274c5daba47b1ca19b7cb,
+        type: 2}
+      propertyPath: Bullet.Array.data[0]
+      value: 
+      objectReference: {fileID: 1575786173914686, guid: 7504528c346ba4a2f8f88dfdef01137e,
+        type: 2}
+    - target: {fileID: 114588120625557020, guid: cbdb8de024d274c5daba47b1ca19b7cb,
+        type: 2}
+      propertyPath: Bullet.Array.data[1]
+      value: 
+      objectReference: {fileID: 1059766572387790, guid: 2cc6ec4fa530c4915bb7ee0d588f38b1,
+        type: 2}
+    - target: {fileID: 114588120625557020, guid: cbdb8de024d274c5daba47b1ca19b7cb,
+        type: 2}
+      propertyPath: BulletID
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
