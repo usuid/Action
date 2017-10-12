@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Bullet
   - Ladder
+  - Sloop
   layers:
   - Default
   - TransparentFX
