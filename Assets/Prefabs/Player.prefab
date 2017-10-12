@@ -93,10 +93,13 @@ MonoBehaviour:
   PlayerHP: 100
   PlayerHPBar: {fileID: 0}
   PlayerHPtext: {fileID: 0}
-  Speed: 0.1
+  Speed: 3
   CanMove: 1
-  JumpSpeed: 500
-  Bullet: {fileID: 1575786173914686, guid: 7504528c346ba4a2f8f88dfdef01137e, type: 2}
+  JumpSpeed: 400
+  BulletID: 0
+  Bullet:
+  - {fileID: 1575786173914686, guid: 7504528c346ba4a2f8f88dfdef01137e, type: 2}
+  - {fileID: 1059766572387790, guid: 2cc6ec4fa530c4915bb7ee0d588f38b1, type: 2}
 --- !u!212 &212473097116876488
 SpriteRenderer:
   m_ObjectHideFlags: 1
