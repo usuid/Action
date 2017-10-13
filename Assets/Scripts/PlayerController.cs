@@ -32,20 +32,21 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(CanMove){
-			moveSpeed = Input.GetAxis ("Horizontal");
 			if (Input.GetKey (KeyCode.RightArrow)) {
 				this.transform.rotation = new Quaternion (0f, 0f, 0f, 0f);
-				rb2d.velocity = new Vector2 (moveSpeed * Speed, rb2d.velocity.y);
-				if (isLadderStay) {
-					this.transform.Translate (new Vector3 (1.5f, 0f, 0f));
+				if (rb2d.velocity.x <= 5f) {
+					rb2d.AddForce (new Vector2 (30f, 0f));
 				}
 			}
 			if (Input.GetKey (KeyCode.LeftArrow)) {
 				this.transform.rotation = new Quaternion (0f, 180f, 0f, 0f);
-				rb2d.velocity = new Vector2 (moveSpeed * Speed, rb2d.velocity.y);
-				if (isLadderStay) {
-					this.transform.Translate (new Vector3 (1.5f, 0f, 0f));
+				if (rb2d.velocity.x >= -5f) {
+					rb2d.AddForce (new Vector2 (-30f, 0f));
 				}
+			}
+
+			if (Input.GetKeyUp (KeyCode.RightArrow) || Input.GetKeyUp (KeyCode.LeftArrow)) {
+				rb2d.velocity = new Vector2 (0f, rb2d.velocity.y);
 			}
 
 			if (Input.GetKeyDown (KeyCode.Z) && canjump) {
@@ -60,12 +61,18 @@ public class PlayerController : MonoBehaviour {
 
 			if (isLadderStay) {
 				if (Input.GetKey (KeyCode.UpArrow)) {
-					this.transform.Translate (new Vector3 (0f, 0.1f, 0f));
+					if (rb2d.velocity.y <= 5f) {
+						rb2d.AddForce (new Vector2 (0f, 30f));
+					}
 				}
 				if (Input.GetKey (KeyCode.DownArrow)) {
-					this.transform.Translate (new Vector3 (0f, -0.1f, 0f));
+					if (rb2d.velocity.y >= -5f) {
+						rb2d.AddForce (new Vector2 (0f, -30f));
+					}
 				}
-				rb2d.velocity = new Vector2 (0f, 0f);
+				if (Input.GetKeyUp (KeyCode.UpArrow) || Input.GetKeyUp (KeyCode.DownArrow)) {
+					rb2d.velocity = new Vector2 (rb2d.velocity.x, 0f);
+				}
 			}
 
 			if (Input.GetKeyDown (KeyCode.X)) {
